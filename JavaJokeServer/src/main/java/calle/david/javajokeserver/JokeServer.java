@@ -36,7 +36,7 @@ public class JokeServer {
                 count++;
                 Joke joke = gson.fromJson(reader,Joke.class);
                 if(randomNum==count && !joke.body.trim().equals("")){
-                    jokeAry[0]= String.valueOf(randomNum);
+                    jokeAry[0]= joke.title;
                     jokeAry[1]=joke.body;
                     break;
                 }

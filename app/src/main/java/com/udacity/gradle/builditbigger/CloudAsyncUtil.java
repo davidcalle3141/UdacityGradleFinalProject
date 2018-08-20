@@ -51,16 +51,11 @@ public  class CloudAsyncUtil extends AsyncTask<Pair<Context,Intent>, Void, List<
         context = params[0].first;
         intent = params[0].second;
         try {
-            List<String>jokes = myApiService.makeMeLaugh().execute().getData();
-
-            return jokes;
+            return myApiService.makeMeLaugh().execute().getData();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<String> boo = new ArrayList<>();
-        boo.add("boo");
-        boo.add("baah");
-        return   boo;
+        return null;
     }
 
     @Override
