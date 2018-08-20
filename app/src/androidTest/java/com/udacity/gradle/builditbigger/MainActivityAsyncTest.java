@@ -15,6 +15,10 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsNot.not;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -30,6 +34,8 @@ public class MainActivityAsyncTest {
         onView(
                 withText("Tell Joke")).perform(click());
         onView(withId(R.id.joke_body)).check(matches(isDisplayed()));
+        onView(withId(R.id.joke_body)).check(matches(not(withText(""))));
+
 
     }
 }
