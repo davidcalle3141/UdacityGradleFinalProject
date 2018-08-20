@@ -2,8 +2,9 @@
 
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
+
     }
     dependencies {
         classpath 'com.google.guava:guava:23.0'
