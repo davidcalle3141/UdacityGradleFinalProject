@@ -2,7 +2,7 @@ package com.udacity.gradle.builditbigger;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CustomIdlingResource implements android.support.test.espresso.IdlingResource {
+class CustomIdlingResource implements android.support.test.espresso.IdlingResource {
 private final String mResourceName;
 private final AtomicInteger counter = new AtomicInteger(0);
 private volatile ResourceCallback resourceCallback;

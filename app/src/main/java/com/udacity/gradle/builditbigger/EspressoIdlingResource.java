@@ -2,9 +2,9 @@ package com.udacity.gradle.builditbigger;
 
 import android.support.test.espresso.IdlingResource;
 
-public class EspressoIdlingResource {
+class EspressoIdlingResource {
     private static final String RESOURCE = "GLOBAL";
-    private static CustomIdlingResource mCustomIdlingResource =
+    private static final CustomIdlingResource mCustomIdlingResource =
             new CustomIdlingResource(RESOURCE);
 
     public static void Lock(){

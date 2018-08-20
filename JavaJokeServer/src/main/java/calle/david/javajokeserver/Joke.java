@@ -1,6 +1,6 @@
 package calle.david.javajokeserver;
 
-public class Joke {
+class Joke {
     String title;
     String body;
     String category;

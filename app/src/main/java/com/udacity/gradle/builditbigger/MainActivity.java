@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import calle.david.androidjokelibrary.ShowJokeActivity;
-import calle.david.javajokeserver.JokeServer;
 
 
 public class MainActivity extends AppCompatActivity {

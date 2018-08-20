@@ -4,8 +4,6 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
-import javax.inject.Named;
-
 import calle.david.javajokeserver.JokeServer;
 
 /** An endpoint class we are exposing */
@@ -14,8 +12,7 @@ import calle.david.javajokeserver.JokeServer;
         version = "v1",
         namespace = @ApiNamespace(
                 ownerDomain = "backend.builditbigger.gradle.udacity.com",
-                ownerName = "backend.builditbigger.gradle.udacity.com",
-                packagePath = ""
+                ownerName = "backend.builditbigger.gradle.udacity.com"
         )
 )
 public class MyEndpoint {
