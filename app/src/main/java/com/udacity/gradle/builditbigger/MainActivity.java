@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public synchronized void tellJoke(View view) {
         Intent intent = new Intent(this, ShowJokeActivity.class);
+        EspressoIdlingResource.Lock();
         new CloudAsyncUtil().execute(new Pair<Context,Intent>(this,intent));
     }
 

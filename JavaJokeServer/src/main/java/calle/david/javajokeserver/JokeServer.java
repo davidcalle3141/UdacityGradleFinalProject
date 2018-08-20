@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Random;
 
+import sun.rmi.runtime.Log;
+
 public class JokeServer {
     private Random random;
     public JokeServer(){
@@ -18,9 +20,10 @@ public class JokeServer {
     }
 
     public String[] retrieveRandomJoke(){
-        int randomNum = random.nextInt((1660 - 1) + 1) + 1;
+        int randomNum = random.nextInt((1650 - 1) + 1) + 1;
         String jokeAry[] = new String[2];
         String resPath = "/JokesJson/jokes.json";
+        int count =0;
 
 
         try{
@@ -30,9 +33,10 @@ public class JokeServer {
             Gson gson = new GsonBuilder().create();
             reader.beginArray();
             while(reader.hasNext()){
+                count++;
                 Joke joke = gson.fromJson(reader,Joke.class);
-                if(joke.id == randomNum && !joke.body.trim().equals("")){
-                    jokeAry[0]=joke.title;
+                if(randomNum==count && !joke.body.trim().equals("")){
+                    jokeAry[0]= String.valueOf(randomNum);
                     jokeAry[1]=joke.body;
                     break;
                 }
@@ -41,6 +45,7 @@ public class JokeServer {
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
+
         }
         return jokeAry;
     }

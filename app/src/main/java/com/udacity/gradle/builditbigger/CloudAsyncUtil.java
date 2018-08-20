@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.util.Pair;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -12,6 +13,7 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public  class CloudAsyncUtil extends AsyncTask<Pair<Context,Intent>, Void, List<String>> {
@@ -22,7 +24,10 @@ public  class CloudAsyncUtil extends AsyncTask<Pair<Context,Intent>, Void, List<
 
 
     @Override
-    protected List<String> doInBackground(Pair<Context,Intent> ... params) {
+    protected synchronized List<String> doInBackground(Pair<Context,Intent> ... params) {
+        //EspressoIdlingResource.Lock();
+
+
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -46,21 +51,30 @@ public  class CloudAsyncUtil extends AsyncTask<Pair<Context,Intent>, Void, List<
         context = params[0].first;
         intent = params[0].second;
         try {
-            return myApiService.makeMeLaugh().execute().getData();
+            List<String>jokes = myApiService.makeMeLaugh().execute().getData();
+
+            return jokes;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
+        List<String> boo = new ArrayList<>();
+        boo.add("boo");
+        boo.add("baah");
+        return   boo;
     }
 
     @Override
     protected synchronized void onPostExecute(List<String> strings) {
         super.onPostExecute(strings);
-       // if(strings!=null){
+
+        if(strings!=null){
+            EspressoIdlingResource.Unlock();
+            Log.d("yup",strings.get(1));
             intent.putExtra("jokeTitle",strings.get(0));
             intent.putExtra("jokeBody",strings.get(1));
-            context.startActivity(intent);}
+            context.startActivity(intent);
+    }
 
 
-    //}
+    }
 }

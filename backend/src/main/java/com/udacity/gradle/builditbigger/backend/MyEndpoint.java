@@ -25,7 +25,6 @@ public class MyEndpoint {
     public MyBean makeMeLaugh() {
         MyBean response = new MyBean();
         response.setData(new JokeServer().retrieveRandomJoke());
-
         return response;
     }
 
